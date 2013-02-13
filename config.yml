@@ -1,0 +1,5 @@
+worlds:
+  first_example_world:
+    density: 0.1
+  second_example_world: 
+    density: 1
