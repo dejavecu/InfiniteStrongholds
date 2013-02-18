@@ -3,3 +3,41 @@ worlds:
     density: 0.1
   second_example_world: 
     density: 1
+generation:
+  components:
+    PortalRoom:
+      frequency: 20
+      maxinstances: 1
+    Library:
+      frequency: 10
+      maxinstances: 2
+    ChestCorridor:
+      frequency: 5
+      maxinstances: 4
+    Prison:
+      frequency: 5
+      maxinstances: 5
+    Stairs:
+      frequency: 40 
+      maxinstances: 0
+    Stairs:
+      frequency: 40 
+      maxinstances: 0
+    StairsStraight:
+      frequency: 5 
+      maxinstances: 5
+    Stairs2:
+      frequency: 5 
+      maxinstances: 5
+    LeftTurn:
+      frequency: 20
+      maxinstances: 0
+    RightTurn:
+      frequency: 20 
+      maxinstances: 0
+    Crossing:
+      frequency: 5 
+      maxinstances: 4
+    RoomCrossing:
+      frequency: 20 
+      maxinstances: 0

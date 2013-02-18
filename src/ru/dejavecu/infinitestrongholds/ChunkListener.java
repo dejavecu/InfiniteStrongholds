@@ -3,28 +3,33 @@ package ru.dejavecu.infinitestrongholds;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+import java.util.Set;
 
 import net.minecraft.server.v1_4_R1.World;
 
 
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.craftbukkit.v1_4_R1.CraftWorld;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.world.ChunkLoadEvent;
 import org.bukkit.event.world.ChunkPopulateEvent;
+import org.bukkit.plugin.java.JavaPlugin;
 
 public class ChunkListener implements Listener {
-   
+
   private Map<String, InfiniteStrongholdGenerator> strongholdGenerators = new HashMap<String, InfiniteStrongholdGenerator>();
   private Random random = new Random();
 
-  public ChunkListener(Map<String, Double> densities) {
-    for (String worldName : densities.keySet()) { 
-      System.out.println(worldName);
-      System.out.println(densities.get(worldName));
-      strongholdGenerators.put(worldName, new InfiniteStrongholdGenerator(densities.get(worldName)));
+  public ChunkListener(JavaPlugin plugin) {
+    ConfigurationSection worldsConfiguration = plugin.getConfig().getConfigurationSection("worlds");
+    Set<String> worldList = worldsConfiguration.getKeys(false);
+    for (String worldName : worldList) {
+      Double density = worldsConfiguration.getDouble(worldName + ".density");
+      strongholdGenerators.put(worldName, new InfiniteStrongholdGenerator(plugin, density));
     }
+
   }
 
   @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
